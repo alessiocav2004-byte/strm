@@ -16,16 +16,6 @@ services:
       - npm-letsencrypt:/etc/letsencrypt
     networks:
       - proxy
-  duckdns-updater:
-    image: linuxserver/duckdns
-    container_name: duckdns-updater
-    restart: unless-stopped
-    env_file:
-      - ./duckdns-updater/.env
-    volumes:
-      - duckdns-data:/config
-    networks:
-      - proxy
   mediaflow_proxy:
     build: https://github.com/mhdzumair/mediaflow-proxy.git
     container_name: mediaflow_proxy
@@ -34,6 +24,36 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+  desec-updater:
+    image: qmcgaw/ddns-updater:latest
+    container_name: desec-updater
+    restart: unless-stopped
+    env_file:
+      - ./desec-updater/.env
+    networks:
+      - proxy
+  aiostreams:
+    #build: https://github.com/Viren070/AIOStreams.git#main
+    image: ghcr.io/viren070/aiostreams:latest
+    container_name: aiostreams
+    env_file:
+      - ./aiostreams/.env
+    volumes:
+      - aiostreams-data:/app/data
+    restart: unless-stopped 
+    networks:
+      - proxy
+  #duckdns-updater:
+  #  image: linuxserver/duckdns
+  #  container_name: duckdns-updater
+  #  restart: unless-stopped
+  #  env_file:
+  #    - ./duckdns-updater/.env
+  #  volumes:
+  #    - duckdns-data:/config
+  #  networks:
+  #    - proxy
+  
   #mammamia:
   #  build: ./mammamia
   #  container_name: mammamia
@@ -63,22 +83,11 @@ services:
   #  command: pnpm start
   #  networks:
   #    - proxy
-  aiostreams:
-    #build: https://github.com/Viren070/AIOStreams.git#main
-    image: ghcr.io/viren070/aiostreams:latest
-    container_name: aiostreams
-    env_file:
-      - ./aiostreams/.env
-    volumes:
-      - aiostreams-data:/app/data
-    restart: unless-stopped 
-    networks:
-      - proxy
-
+  
 volumes:
   npm-data:
   npm-letsencrypt:
-  duckdns-data:
+  #duckdns-data:
   aiostreams-data:
 
 networks:
