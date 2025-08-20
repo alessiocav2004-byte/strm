@@ -38,18 +38,18 @@ services:
     networks:
       - proxy
       
-  stremio-docker:
-    image: tsaridas/stremio-docker:latest
-    container_name: stremio-docker
-    ports:
-      - "8080:8080"
-      - "11470:11470"
-    environment:
-      - NO_CORS=1
-      - CASTING_DISABLED=1
-    restart: unless-stopped
-    networks:
-      - proxy
+  #stremio-docker:
+  #  image: tsaridas/stremio-docker:latest
+  #  container_name: stremio-docker
+  #  ports:
+  #    - "8080:8080"
+  #    - "11470:11470"
+  #  environment:
+  #    - NO_CORS=1
+  #    - CASTING_DISABLED=1
+  #  restart: unless-stopped
+  #  networks:
+  #    - proxy
   
   #duckdns-updater:
   #  image: linuxserver/duckdns
