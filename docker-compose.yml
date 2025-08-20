@@ -24,14 +24,6 @@ services:
     restart: unless-stopped
     networks:
       - proxy
-  desec-updater:
-    image: qmcgaw/ddns-updater:latest
-    container_name: desec-updater
-    restart: unless-stopped
-    env_file:
-      - ./desec-updater/.env
-    networks:
-      - proxy
   aiostreams:
     #build: https://github.com/Viren070/AIOStreams.git#main
     image: ghcr.io/viren070/aiostreams:latest
@@ -62,6 +54,7 @@ services:
   #  restart: unless-stopped 
   #  networks:
   #    - proxy
+  
   #stremio-docker:
   #  image: tsaridas/stremio-docker:latest
   #  container_name: stremio-docker
@@ -74,6 +67,7 @@ services:
   #  restart: unless-stopped
   #  networks:
   #    - proxy
+  
   #streamv:
   #  build: https://github.com/qwertyuiop8899/StreamV.git#main
   #  container_name: streamv
